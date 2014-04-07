@@ -6,11 +6,12 @@ Dad is an architecture agnostic data structuring tool for your browser. It provi
 - syncing data to the server
 - syncing data to localstorage
 - using websockets
-- validating input
+- validating models
 - emitting events on model changes
 
 ## Installation
 With [node](nodejs.org) installed:
+
 `npm i --save dad`
 
 ## License
