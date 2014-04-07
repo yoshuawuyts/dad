@@ -1,6 +1,4 @@
-# Dad
-
-Data micro-framework
+<img src='http://i1.minus.com/j2fBN9Ildqhc6.png' height='95' width='211' />
 
 ## Overview
 Dad is an architecture agnostic data structuring tool for your browser. It provides multiple hooks for doing stuff such as:
