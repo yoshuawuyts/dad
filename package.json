@@ -23,5 +23,14 @@
   "bugs": {
     "url": "https://github.com/yoshuawuyts/dad/issues"
   },
-  "homepage": "https://github.com/yoshuawuyts/dad"
+  "homepage": "https://github.com/yoshuawuyts/dad",
+  "dependencies": {
+    "schema-inspector": "^1.4.2",
+    "localforage": "^0.3.0"
+  },
+  "devDependencies": {
+    "should": "^3.3.0",
+    "mocha": "^1.18.2",
+    "debug": "^0.8.0"
+  }
 }
