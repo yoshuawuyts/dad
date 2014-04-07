@@ -2,6 +2,7 @@
 
 Data micro-framework
 
+## Overview
 Dad is an architecture agnostic data structuring tool for your browser. It provides multiple hooks for doing stuff such as:
 - syncing data to the server
 - syncing data to localstorage
