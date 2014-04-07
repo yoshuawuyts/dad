@@ -9,9 +9,9 @@ Dad is an architecture agnostic data structuring tool for your browser. It provi
 - validating input
 - emitting events on model changes
 
-#Installation
+## Installation
 With [node](nodejs.org) installed:
 `npm i --save dad`
 
-# License
+## License
 [MIT](https://tldrlegal.com/license/mit-license) © [Yoshua Wuyts](yoshuawuyts.com)
