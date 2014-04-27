@@ -1,0 +1,7 @@
+docs
+benchmarks
+examples
+test
+test.js
+.travis.yml
+.npmignore

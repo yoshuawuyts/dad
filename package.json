@@ -26,7 +26,8 @@
   "homepage": "https://github.com/yoshuawuyts/dad",
   "dependencies": {
     "schema-inspector": "^1.4.2",
-    "localforage": "^0.3.0"
+    "localforage": "^0.3.0",
+    "customs": "^0.1.0"
   },
   "devDependencies": {
     "should": "^3.3.0",
