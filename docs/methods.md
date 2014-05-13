@@ -2,51 +2,34 @@
 
 __Load dad__
 ````js
-/**
- * Module dependencies
- */
-
 var dad = require('dad');
+var resource = dad();
 ````
 
-__dad.createResource()__
+__Create a new 'resource'__
 ````js
-/**
- * Create a new resource
- */
+var Chapters = resource('chapters')
+  .attr('title', {type: 'string', required: true})
+  .attr('content', {type: 'string'})
+  .sync(['localStorage', 'webSockets'])
+  .url('/chapters')
 
-var books = dad.createResource({
-  model: {
-    title: 'string',
-    author: 'string',
-    pages: 'number',
-    children: {
-      chapters: 'number'
-    }
-  },
-  sync: ['localStorage', 'webSockets'],
-  url: '/books'
-});
+var Books = resource('books')
+  .attr('title', {type: 'string', required: true})
+  .attr('author', {type: 'string', required: true})
+  .attr('pages', {type: 'number'})
+  .sync(['localStorage', 'webSockets'])
+  .children(Chapters)
+  .url('/books')
 ````
 
-__books.add__
+__Add an entry to the resource__
+TODO: Think about how to store nested objects within the 'collection' metaphor.
 ````js
-/**
- * Add a new entry to the 'books' resource
- *
- * Validates the input before saving the data, if 
- * any errors occur the callback is executed and
- * the entry is not added.
- */
+var books = new Books;
 
-books.add({
-  title: 'Dad Jokes',
-  author: 'Yoshua Wuyts',
-  pages: 12,
-  children: {
-    chapters: [29387, 29388, 29389, 29390]
-  }
-}, function(err) {
-  // handle error
-});
+books
+  .title('Dad jokes')
+  .author('Yoshua Wuyts')
+  .pages(12)
 ````
