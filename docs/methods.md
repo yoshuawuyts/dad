@@ -24,7 +24,9 @@ var Books = resource('books')
 ````
 
 __Add an entry to the resource__
+
 TODO: Think about how to store nested objects within the 'collection' metaphor.
+
 ````js
 var books = new Books;
 
