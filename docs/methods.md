@@ -1,37 +1,83 @@
 # Methods
 
-__Load dad__
+### Overview
+````
+.attr()         // set model attribute
+.syncOrder()    // set sync methods
+.children()     // set nested model
+.toJSON()       // get contents as JSON
+.delete()       // delete content at id
+.add()          // add data to collection
+.sync()         // synchronize with server
+.validate()     // validate contents
+````
+
+### Initialize
 ````js
 var dad = require('dad');
 var resource = dad();
 ````
 
-__Create a new 'resource'__
+### .attr(name, {meta: value})
 ````js
-var Chapters = resource('chapters')
-  .attr('title', {type: 'string', required: true})
-  .attr('content', {type: 'string'})
-  .sync(['localStorage', 'webSockets'])
-  .url('/chapters')
-
-var Books = resource('books')
+var books = resource('books')
   .attr('title', {type: 'string', required: true})
   .attr('author', {type: 'string', required: true})
   .attr('pages', {type: 'number'})
   .sync(['localStorage', 'webSockets'])
-  .children(Chapters)
+  .children(chapters)
   .url('/books')
 ````
 
-__Add an entry to the resource__
-
-TODO: Think about how to store nested objects within the 'collection' metaphor.
-
+### .sync([methods])
 ````js
-var books = new Books;
+var books = resource('books')
+  .sync(['localStorage', 'webSockets']);
+````
+
+### .children(function())
+````js
+var chapters = resource('chapters');
 
 books
-  .title('Dad jokes')
-  .author('Yoshua Wuyts')
-  .pages(12)
+  .children(chapters);
+````
+
+### .baseUrl('postfix', 'prefix')
+````js
+books
+  .baseUrl('/books', 'api')
+// -> 'api.mysite.com/books'
+````
+
+### .url()
+````js
+// get baseUrl
+books
+  .url()
+// -> 'api.mysite.com/books'
+
+// get url of a certain id
+books
+  .url({id: 5})
+// -> 'api.mysite.com/books/5'
+
+// get url of a certain id + method
+books
+  .url({id: 5})
+  .url('edit')
+// -> 'api.mysite.com/books/5/edit'
+````
+
+### .add({attr: value})
+````js
+books
+  .add({title: 'Fatherly jokes', author: 'Yoshua Wuyts', pages: 12})
+  .sync();
+````
+
+### .prune()
+````js
+books.prune();
+// -> {id: []}
 ````
