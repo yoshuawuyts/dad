@@ -2,11 +2,14 @@
 'use strict';
 
 var should = require('should');
-var dad = require ('..');
+var resource = require ('..');
 
 describe('Application', function () {
-  it('should exist', function (done) {
-    dad.should.exist;
+  it('should init blank objects', function (done) {
+    var books = resource('books');
+    books.store.should.be.ok;
+    books.template.should.be.ok;
+    books.url.should.equal('');
     done();
   });
   

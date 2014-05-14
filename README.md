@@ -1,4 +1,4 @@
-<img src='http://i1.minus.com/j2fBN9Ildqhc6.png' height='95' width='211' />
+# Dad
 
 [![Build Status](https://travis-ci.org/yoshuawuyts/dad.svg)](https://travis-ci.org/yoshuawuyts/dad)
 [![Coverage Status](https://coveralls.io/repos/yoshuawuyts/dad/badge.png)](https://coveralls.io/r/yoshuawuyts/dad)
