@@ -1,7 +1,7 @@
 # Methods
 
 ### Overview
-````
+````js
 .attr()         // set model attribute
 .add()          // add data to collection
 .syncOrder()    // set sync methods
