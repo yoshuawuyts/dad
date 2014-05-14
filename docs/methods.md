@@ -28,9 +28,6 @@ var books = resource('books')
   .attr('title', {type: 'string', required: true})
   .attr('author', {type: 'string', required: true})
   .attr('pages', {type: 'number'})
-  .sync(['localStorage', 'webSockets'])
-  .children(chapters)
-  .url('/books')
 ````
 
 ### .add({attr: value})
