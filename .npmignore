@@ -1,7 +1,13 @@
-docs
+# Config
+.gitignore
+.npmignore
+.travis.yml
+
+# Folders
 benchmarks
+docs
 examples
 test
+
+# Files
 test.js
-.travis.yml
-.npmignore

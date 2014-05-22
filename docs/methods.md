@@ -8,7 +8,7 @@
 .sync()         // sync data with server
 .children()     // set nested model
 .toJSON()       // get contents as JSON
-.delete()       // delete content at id
+.remove()       // delete content at id
 .sync()         // synchronize with server
 .validate()     // validate contents
 .baseUrl()      // set base url

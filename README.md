@@ -8,12 +8,13 @@ Data micro-framework.
 ## Methods
 ````js
 .attr()         // set model attribute
-.add()          // add data to collection
+.add()          // add data to store
+.update()       // update data at id
 .syncOrder()    // set sync methods
 .sync()         // sync data with server
 .children()     // set nested model
 .toJSON()       // get contents as JSON
-.delete()       // delete content at id
+.remove()       // delete content at id
 .sync()         // synchronize with server
 .validate()     // validate contents
 .baseUrl()      // set base url
@@ -25,7 +26,7 @@ Visit [documentation](https://github.com/yoshuawuyts/dad/blob/master/docs/method
 ## Installation
 With [node](nodejs.org) installed:
 
-`````
+````
 npm i --save dad
 ````
 
