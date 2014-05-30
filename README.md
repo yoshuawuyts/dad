@@ -1,13 +1,13 @@
 # Dad
-> Data micro-framework. Best used with [browserify](https://github.com/substack/node-browserify). WIP
 
 [![Build Status](https://travis-ci.org/yoshuawuyts/dad.svg)](https://travis-ci.org/yoshuawuyts/dad)
 [![Coverage Status](https://coveralls.io/repos/yoshuawuyts/dad/badge.png)](https://coveralls.io/r/yoshuawuyts/dad)
-### [Documentation](https://github.com/yoshuawuyts/dad/tree/master/docs/methods.md) &nbsp;&nbsp;&nbsp; [Submit Issue](https://github.com/yoshuawuyts/dad/issues)
+
+Data micro-framework. Best used with [browserify](https://github.com/substack/node-browserify). WIP
 
 ## Installation
-````
-npm i --save dad
+````bash
+$ npm i --save dad
 ````
 
 ## Progress
@@ -54,6 +54,10 @@ books.update({cid: 0, title: 'Lizards', author: 'Tobi', pages: 12});
 books.save();
 books.fetch();
 ````
+
+## References
+- [Issues](https://github.com/yoshuawuyts/dad/issues)
+- [Documentation](https://github.com/yoshuawuyts/dad/tree/master/docs/methods.md)
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license) © [Yoshua Wuyts](yoshuawuyts.com)
