@@ -15,8 +15,8 @@ $ npm i --save dad
 ````js
 dad()           // Create a named store
 .attr()         // Define an attribute on the model.
-.add()          // Save records to store.
-.get()          // Get records from the store.
+.add()          // Save a record or an array of records to the store.
+.get()          // Get a record from the store at `cid`.
 ````
 ### Pending
 ````js
