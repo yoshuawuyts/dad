@@ -5,12 +5,12 @@
 
 Data micro-framework. Best used with [browserify](https://github.com/substack/node-browserify). WIP
 
+### [Documentation](https://github.com/yoshuawuyts/dad/tree/master/docs/methods.md) &nbsp;&nbsp;&nbsp; [Submit Issue](https://github.com/yoshuawuyts/dad/issues)
+
 ## Installation
 ````
 npm i --save dad
 ````
-
-### [Documentation](https://github.com/yoshuawuyts/dad/tree/master/docs/methods.md) &nbsp;&nbsp;&nbsp; [Submit Issue](https://github.com/yoshuawuyts/dad/issues)
 
 ## Progress
 ### Implemented
