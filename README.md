@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/yoshuawuyts/dad.svg)](https://travis-ci.org/yoshuawuyts/dad)
 [![Coverage Status](https://coveralls.io/repos/yoshuawuyts/dad/badge.png)](https://coveralls.io/r/yoshuawuyts/dad)
 
-Data micro-framework. Best used with [browserify](https://github.com/substack/node-browserify). WIP
+Data micro-framework. WIP
 
 ## Installation
 ````bash
