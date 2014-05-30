@@ -12,7 +12,7 @@ npm i --save dad
 
 ### [Documentation](https://github.com/yoshuawuyts/dad/tree/master/docs/methods.md) &nbsp;&nbsp;&nbsp; [Submit Issue](https://github.com/yoshuawuyts/dad/issues)
 
-## Overview
+## Progress
 ### Implemented
 ````js
 .attr()         // Define an attribute on the model.
@@ -31,6 +31,48 @@ npm i --save dad
 .toJSON()       // get contents as JSON
 .validate()     // validate contents
 .prune()        // remove items without references
+````
+
+## Overview
+````
+/**
+ * Create a store.
+ */
+
+var store = require('dad');
+var books = store('books');
+
+/**
+ * Define the model attributes.
+ */
+
+books
+  .attr('title', {type: 'string', required: true})
+  .attr('author', {type: 'string', required: true})
+  .attr(pages, {type: 'number'});
+
+/**
+ * Define the server endpoints.
+ */
+
+books.baseUrl('api.mysite.com/books');
+
+/**
+ * Transact data.
+ */
+
+books.add({title: 'Ferrets', author: 'Tobi', pages: 12});
+books.update({cid: 0, title: 'Lizards', author: 'Tobi', pages: 12});
+books.get(0);
+// -> {cid: 0, title: 'Lizards', author: 'Tobi', pages: 12}
+books.delete(0);
+
+/**
+ * Persist records to the server.
+ */
+
+books.save();
+books.fetch();
 ````
 
 ## License
