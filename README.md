@@ -13,7 +13,7 @@ $ npm i --save dad
 ## Progress
 ### Implemented
 ````js
-dad()           // Create a named store
+dad()           // Create a named store.
 .attr()         // Define an attribute on the model.
 .add()          // Save a record or an array of records to the store.
 .get()          // Get a record from the store at `cid`.
@@ -34,7 +34,7 @@ dad()           // Create a named store
 ### Under consideration
 ````js
 .sync()         // Synchronize data with the server over HTTP.
-.adapters()     // Define synchronization adapters to be called
+.adapters()     // Define synchronization adapters to be called.
 .prune()        // Remove records with an empty reference count.
 .toJSON()       // Get records as JSON.
 ````
