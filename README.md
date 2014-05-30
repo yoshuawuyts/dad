@@ -1,10 +1,8 @@
 # Dad
+> Data micro-framework. Best used with [browserify](https://github.com/substack/node-browserify). WIP
 
 [![Build Status](https://travis-ci.org/yoshuawuyts/dad.svg)](https://travis-ci.org/yoshuawuyts/dad)
 [![Coverage Status](https://coveralls.io/repos/yoshuawuyts/dad/badge.png)](https://coveralls.io/r/yoshuawuyts/dad)
-
-Data micro-framework. Best used with [browserify](https://github.com/substack/node-browserify). WIP
-
 ### [Documentation](https://github.com/yoshuawuyts/dad/tree/master/docs/methods.md) &nbsp;&nbsp;&nbsp; [Submit Issue](https://github.com/yoshuawuyts/dad/issues)
 
 ## Installation
@@ -33,43 +31,25 @@ npm i --save dad
 .prune()        // remove items without references
 ````
 
-## Overview
+## Example
 ````js
-/**
- * Create a store.
- */
-
 var store = require('dad');
 var books = store('books');
 
-/**
- * Define the model attributes.
- */
+// attributes
 
 books
+  .baseUrl('api.mysite.com/books')
   .attr('title', {type: 'string', required: true})
   .attr('author', {type: 'string', required: true})
   .attr(pages, {type: 'number'});
 
-/**
- * Define the server endpoints.
- */
-
-books.baseUrl('api.mysite.com/books');
-
-/**
- * Transact data.
- */
+// transactions
 
 books.add({title: 'Ferrets', author: 'Tobi', pages: 12});
 books.update({cid: 0, title: 'Lizards', author: 'Tobi', pages: 12});
-books.get(0);
-// -> {cid: 0, title: 'Lizards', author: 'Tobi', pages: 12}
-books.delete(0);
 
-/**
- * Persist records to the server.
- */
+// persist changes to server
 
 books.save();
 books.fetch();
