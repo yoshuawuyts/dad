@@ -1,84 +1,108 @@
-# Methods
-
-### Overview
+## Setup
+#### dad()
+Create a named store.
 ````js
-.attr()         // set model attribute
-.add()          // add data to collection
-.syncOrder()    // set sync methods
-.sync()         // sync data with server
-.children()     // set nested model
-.toJSON()       // get contents as JSON
-.remove()       // delete content at id
-.sync()         // synchronize with server
-.validate()     // validate contents
-.baseUrl()      // set base url
-.url()          // set partial url
-.prune()        // remove items without references
+var store = require('dad');
+var books = store('books');
+var chapters = store('chapters');
 ````
 
-### Initialize
+#### .attr()
+Define an attribute on the model.
 ````js
-var dad = require('dad');
-var resource = dad();
-````
-
-### .attr(name, {meta: value})
-````js
-var books = resource('books')
+books
   .attr('title', {type: 'string', required: true})
   .attr('author', {type: 'string', required: true})
-  .attr('pages', {type: 'number'})
+  .attr(pages, {type: 'number'});
 ````
 
-### .add({attr: value})
+#### .hasMany()
+Define a store as an attribute on the model.
 ````js
-books
-  .add({title: 'Fatherly jokes', author: 'Yoshua Wuyts', pages: 12})
-  .sync();
+books.hasMany('chapters', chapters);
 ````
 
-### .syncOrder([methods])
+#### .baseUrl
+Define the base url for store server methods.
 ````js
-var books = resource('books')
-  .sync(['localStorage', 'webSockets']);
+books.baseUrl('api.mysite.com/books');
 ````
 
-### .children(function())
-````js
-var chapters = resource('chapters');
+#### .url
+Define the url per method. Defaults to the following values:
+- create -> POST   `store.baseUrl/`
+- read   -> GET    `store.baseUrl/:id`
+- update -> PATCH  `store.baseUrl/:id`
+- delete -> DELETE `store.baseUrl/:id`
 
-books
-  .children(chapters);
+````js
+books.url('create', 'buildResource');
+// -> api.mysite.com/books/buildResource
 ````
 
-### .baseUrl('postfix', 'prefix')
+## Transactions
+#### .add()
+Save a record or an array of records to the store. Records get a `cid` assigned automatically. Emits an `add` event when completed.
 ````js
-books
-  .baseUrl('/books', 'api')
-// -> 'api.mysite.com/books'
+chapters.add([
+  {name: 'chapter 1', pages: 2},
+  {name: 'chapter 2', pages: 6},
+  {name: 'chapter 3', pages: 4}
+]);
+
+books.add({
+  title: 'Fatherly jokes', 
+  author: 'Tobi', 
+  pages: 12,
+  chapters: [0]
+});
 ````
 
-### .url()
+#### .get()
+Get a record from the store at `cid`.
 ````js
-// get baseUrl
-books
-  .url()
-// -> 'api.mysite.com/books'
-
-// get url of a certain id
-books
-  .url({id: 5})
-// -> 'api.mysite.com/books/5'
-
-// get url of a certain id + method
-books
-  .url({id: 5})
-  .url('edit')
-// -> 'api.mysite.com/books/5/edit'
+books.get(0);
+// -> {
+//      cid: 0, 
+//      title: 'Fatherly jokes', 
+//      author: 'Tobi', 
+//      pages: 12,
+//      chapters: [{
+//        cid: 0,
+//        name: 'chapter 1',
+//        pages: 2
+//      }]
+//    };
 ````
 
-### .prune()
+#### .update()
+Update a record at `cid`. Emits an `update` event when completed.
+
+#### .remove()
+Remove a record from the store at `cid`. Emits a `remove` event when completed.
 ````js
-books.prune();
-// -> {id: []}
+chapters.remove(2);
+````
+
+## Persistance
+#### .save()
+Persist the record changes to the server through HTTP. Can be provided with optional HTTP headers. Emits a `save` event when completed, else it emits an `error` event
+````js
+books.save();
+
+books.save({
+  API_KEY: 'mysecretkey',
+  ANOTHER_HEADER: 'some value'
+});
+````
+
+#### .fetch()
+Fetch records from the server through HTTP. Can be provided with optional HTTP headers. Emits a `fetch` event when completed, else it emits an `error` event.
+````js
+books.fetch();
+
+books.fetch({
+  API_KEY: 'mysecretkey',
+  ANOTHER_HEADER: 'some value'
+});
 ````

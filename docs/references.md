@@ -24,3 +24,8 @@ function Sound(attributes) {
   store[id] = this;
 }
 ````
+
+Copy this to define one to many relationships:
+````
+https://github.com/emberjs/data
+````
