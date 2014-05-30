@@ -22,14 +22,14 @@ Define a store as an attribute on the model.
 books.hasMany('chapters', chapters);
 ````
 
-#### .baseUrl
-Define the base url for store server methods.
+#### .baseUrl()
+Define the base url for store server persistance.
 ````js
 books.baseUrl('api.mysite.com/books');
 ````
 
-#### .url
-Define the url per method. Defaults to the following values:
+#### .url()
+Define the url per action. Defaults to the following values:
 - create -> POST   `store.baseUrl/`
 - read   -> GET    `store.baseUrl/:id`
 - update -> PATCH  `store.baseUrl/:id`
@@ -42,7 +42,8 @@ books.url('create', 'buildResource');
 
 ## Transactions
 #### .add()
-Save a record or an array of records to the store. Records get a `cid` assigned automatically. Emits an `add` event when completed.
+Save a record or an array of records to the store. Records get a `cid` assigned 
+automatically. Emits an `add` event when completed.
 ````js
 chapters.add([
   {name: 'chapter 1', pages: 2},
@@ -61,7 +62,7 @@ books.add({
 #### .get()
 Get a record from the store at `cid`.
 ````js
-books.get(0);
+var fatherlyJokes = books.get(0);
 // -> {
 //      cid: 0, 
 //      title: 'Fatherly jokes', 
@@ -77,6 +78,9 @@ books.get(0);
 
 #### .update()
 Update a record at `cid`. Emits an `update` event when completed.
+````js
+chapters.update()
+````
 
 #### .remove()
 Remove a record from the store at `cid`. Emits a `remove` event when completed.
@@ -86,7 +90,9 @@ chapters.remove(2);
 
 ## Persistance
 #### .save()
-Persist the record changes to the server through HTTP. Can be provided with optional HTTP headers. Emits a `save` event when completed, else it emits an `error` event
+Persist the record changes to the server over HTTP. Can be provided with 
+optional HTTP headers. Emits a `save` event when completed, else it emits an 
+`error` event
 ````js
 books.save();
 
@@ -97,7 +103,8 @@ books.save({
 ````
 
 #### .fetch()
-Fetch records from the server through HTTP. Can be provided with optional HTTP headers. Emits a `fetch` event when completed, else it emits an `error` event.
+Fetch records from the server over HTTP. Can be provided with optional HTTP 
+headers. Emits a `fetch` event when completed, else it emits an `error` event.
 ````js
 books.fetch();
 
