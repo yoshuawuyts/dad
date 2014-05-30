@@ -34,7 +34,7 @@ npm i --save dad
 ````
 
 ## Overview
-````
+````js
 /**
  * Create a store.
  */
