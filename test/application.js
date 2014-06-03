@@ -27,4 +27,9 @@ describe('dad()', function () {
     something.name.should.eql('');
     done();
   });
+/*
+  it('should initialize with an event system', function (done) {
+    done();
+  });
+*/
 });
