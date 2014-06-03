@@ -11,7 +11,7 @@ var store = require ('../..');
  * Test
  */
 
-describe('#.add()', function () {
+describe('.add()', function () {
   describe('when incorrect arguments are provided', function () {
     it('should throw', function (done) {
       var books = store('books');
