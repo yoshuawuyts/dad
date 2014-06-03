@@ -17,22 +17,22 @@ dad()           // Create a named store.
 .attr()         // Define an attribute on the model.
 .add()          // Save a record or an array of records to the store.
 .get()          // Get a record from the store at `cid`.
+.update()       // Update a record at `cid`.
 ````
 ### Pending
 ````js
-.hasMany()      // Define a store as an attribute on the model.
-.baseUrl()      // Define the base url for store server persistance.
-.url()          // Define the url per action.
-.add()          // Save a record or an array of records to the store.
-.get()          // Get a record from the store at `cid`.
-.update()       // Update a record at `cid`.
-.remove()       // Remove a record from the store at `cid`.
-.save()         // Persist the record changes to the server over HTTP.
-.fetch()        // Fetch records from the server over HTTP.
 .validate()     // Validate record compliance with the model.
+.hasMany()      // Define a store as an attribute on the model.
+
 .on()           // Subscribe to events on the store.
 .off()          // Stop listening to events on the store.
 .emit()         // Trigger an event on the store.
+
+.baseUrl()      // Define the base url for store server persistance.
+.url()          // Define the url per action.
+.remove()       // Remove a record from the store at `cid`.
+.save()         // Persist the record changes to the server over HTTP.
+.fetch()        // Fetch records from the server over HTTP.
 ````
 ### Under consideration
 ````js

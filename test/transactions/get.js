@@ -24,7 +24,7 @@ describe('.get()', function () {
     done();
   });
 
-  it('should return a value', function (done) {
+  it('should return a record from the store', function (done) {
     var books = store('books');
     books.store = {1: {tuna: true}};
     books.get(1).should.eql({tuna: true});
