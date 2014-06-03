@@ -12,7 +12,7 @@ var store = require ('../..');
  */
 
 describe('.get()', function () {
-  it('should handle errors', function (done) {
+  it('should catch errors', function (done) {
     var books = store('books');
     books.store = {1: {tuna: true}};
 

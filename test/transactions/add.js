@@ -12,20 +12,18 @@ var store = require ('../..');
  */
 
 describe('.add()', function () {
-  describe('when incorrect arguments are provided', function () {
-    it('should throw', function (done) {
-      var books = store('books');
-      books.add.bind(books, {'foo': 'bar'})
-        .should.not.throw('Store.add: argument should be an object, or an array of Objects');
+  it('should catch errors', function (done) {
+    var books = store('books');
+    books.add.bind(books, {'foo': 'bar'})
+      .should.not.throw('Store.add: argument should be an object, or an array of Objects');
 
-      books.add.bind(books, [{'foo': 'bar'}, {'baz': 12}])
-        .should.not.throw('Store.add: argument should be an object, or an array of Objects');
+    books.add.bind(books, [{'foo': 'bar'}, {'baz': 12}])
+      .should.not.throw('Store.add: argument should be an object, or an array of Objects');
 
-      books.add.bind(books, 1234)
-        .should.throw('Store.add: argument should be an object, or an array of Objects');
+    books.add.bind(books, 1234)
+      .should.throw('Store.add: argument should be an object, or an array of Objects');
 
-      done();
-    });
+    done();
   });
 
   it('should save data to the store', function (done) {

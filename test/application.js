@@ -19,9 +19,12 @@ describe('dad()', function () {
     done();
   });
 
-  it('should initialize a name property', function (done) {
+  it('should initialize with a \'name\'', function (done) {
     var books = store('books');
     books.name.should.eql('books');
+
+    var something = store();
+    something.name.should.eql('');
     done();
   });
 });
