@@ -4,10 +4,11 @@
 .travis.yml
 
 # Folders
-benchmarks
-docs
-examples
-test
+benchmarks/
+coverage/
+docs/
+examples/
+test/
 
 # Files
 test.js
