@@ -16,8 +16,10 @@ describe('.update()', function () {
     var books = store('books');
     books.store = {1: {tuna: true}};
 
-    books.update.bind(books, {hello: 'you'}).should.throw('Provide an object with a cid as an argument');
-    books.update.bind(books, {cid: 0}).should.throw('The cid 0 could not be found');
+    books.update.bind(books, {hello: 'you'})
+      .should.throw('Provide an object with a cid as an argument');
+    books.update.bind(books, {cid: 0})
+      .should.throw('The cid \'0\' could not be found');
 
     done();
   });

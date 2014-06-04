@@ -15,13 +15,14 @@ $ npm i --save dad
 ````js
 dad()           // Create a named store.
 .attr()         // Define an attribute on the model.
+.validate()     // Validate record compliance with the model.
 .add()          // Save a record or an array of records to the store.
 .get()          // Get a record from the store at `cid`.
 .update()       // Update a record at `cid`.
-.validate()     // Validate record compliance with the model.
 ````
 ### Pending
 ````js
+.remove()       // Remove a record from the store at `cid`.
 .hasMany()      // Define a store as an attribute on the model.
 
 .on()           // Subscribe to events on the store.
@@ -30,7 +31,6 @@ dad()           // Create a named store.
 
 .baseUrl()      // Define the base url for store server persistance.
 .url()          // Define the url per action.
-.remove()       // Remove a record from the store at `cid`.
 .save()         // Persist the record changes to the server over HTTP.
 .fetch()        // Fetch records from the server over HTTP.
 ````
