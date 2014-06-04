@@ -15,14 +15,14 @@ describe('.attr()', function () {
   it('should catch errors', function (done) {
     var books = store('books');
     books.attr.bind(null, 1337)
-      .should.throw('store.attr: Attribute should be a string');
+      .should.throw('store.attr: attribute should be a string');
     books.attr.bind(null, 'hi')
-      .should.not.throw('store.attr: Attribute should be a string');
+      .should.not.throw('store.attr: attribute should be a string');
 
     books.attr.bind(null, 'hi', 123)
-      .should.throw('store.attr: Meta should be an object');
+      .should.throw('store.attr: meta should be an object');
     books.attr.bind(null, 'hi', {type: 'book'})
-      .should.not.throw('store.attr: Meta should be an object');
+      .should.not.throw('store.attr: meta should be an object');
 
     done();
   });

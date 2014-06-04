@@ -18,10 +18,10 @@ dad()           // Create a named store.
 .add()          // Save a record or an array of records to the store.
 .get()          // Get a record from the store at `cid`.
 .update()       // Update a record at `cid`.
+.validate()     // Validate record compliance with the model.
 ````
 ### Pending
 ````js
-.validate()     // Validate record compliance with the model.
 .hasMany()      // Define a store as an attribute on the model.
 
 .on()           // Subscribe to events on the store.
