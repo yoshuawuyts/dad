@@ -37,4 +37,11 @@ describe('.update()', function () {
     });
     done();
   });
+  it('should emit an \'update\' event', function (done) {
+    var books = store('books');
+    books.on('update', function() {done()});
+    books.store = {1: {tuna: true}};
+
+    books.update({cid: 1, tuna: false});
+  });
 });

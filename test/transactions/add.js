@@ -42,7 +42,7 @@ describe('.add()', function () {
     done();
   });
 
-  it('should track cid\'s of the data', function (done) {
+  it('should track the cid\'s of data', function (done) {
     var books = store('books');
 
     books.add({'foo': 'bar'});
@@ -59,5 +59,12 @@ describe('.add()', function () {
     ]);
 
     done();
+  });
+
+  it('should emit an \'add\' event', function (done) {
+    var books = store('books');
+    books.on('add', function() {done()});
+
+    books.add({'foo': 'bar'});
   });
 });
