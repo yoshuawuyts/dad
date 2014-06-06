@@ -1,9 +1,9 @@
-# Dad
+# Dad <sup>[![Version Badge](http://vb.teelaun.ch/yoshuawuyts/dad.svg)](https://npmjs.org/package/dad)</sup>
 
 [![Build Status](https://travis-ci.org/yoshuawuyts/dad.svg)](https://travis-ci.org/yoshuawuyts/dad)
 [![Coverage Status](https://coveralls.io/repos/yoshuawuyts/dad/badge.png)](https://coveralls.io/r/yoshuawuyts/dad)
 
-Data micro-framework. WIP
+Data micro-framework built for composability and minimalism. WIP
 
 ## Installation
 ````bash
@@ -24,20 +24,20 @@ dad()           // Create a named store.
 
 .on()           // Subscribe to events on the store.
 .emit()         // Trigger an event on the store.
+
+.adapters()     // Define synchronization adapters to be called.
+.baseUrl()      // Define the base url for store server persistance.
 ````
 ### Pending
 ````js
 .hasMany()      // Define a store as an attribute on the model.
 
-.baseUrl()      // Define the base url for store server persistance.
-.url()          // Define the url per action.
-.save()         // Persist the record changes to the server over HTTP.
-.fetch()        // Fetch records from the server over HTTP.
+.save()         // Persist the record changes to the adapters.
+.fetch()        // Fetch records from the adapters.
 ````
 ### Under consideration
 ````js
 .sync()         // Synchronize data with the server over HTTP.
-.adapters()     // Define synchronization adapters to be called.
 .prune()        // Remove records with an empty reference count.
 .toJSON()       // Get records as JSON.
 ````
