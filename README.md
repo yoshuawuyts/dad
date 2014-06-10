@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/yoshuawuyts/dad.svg)](https://travis-ci.org/yoshuawuyts/dad)
 [![Coverage Status](https://coveralls.io/repos/yoshuawuyts/dad/badge.png)](https://coveralls.io/r/yoshuawuyts/dad)
 
-Data micro-framework built for composability and minimalism. WIP
+Data micro-framework built for composability and paternity. WIP
 
 ## Installation
 ````bash
