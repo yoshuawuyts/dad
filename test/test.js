@@ -12,3 +12,5 @@ require('./transactions/add');
 require('./transactions/get');
 require('./transactions/remove');
 require('./transactions/update');
+
+require('./persistance/baseUrl');
