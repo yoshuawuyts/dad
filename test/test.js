@@ -3,7 +3,6 @@
  * See: https://github.com/gotwarlost/istanbul/issues/197
  */
 
-
 require('./application/./application');
 require('./application/attr');
 require('./application/validate');
