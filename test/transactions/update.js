@@ -12,7 +12,7 @@ var store = require ('../..');
  */
 
 describe('.update()', function () {
-  it('should catch errors', function (done) {
+  it('should catch errors', function () {
     var books = store('books');
     books.store = {1: {tuna: true}};
 
@@ -20,10 +20,9 @@ describe('.update()', function () {
       .should.throw('Provide an object with a cid as an argument');
     books.update.bind(books, {cid: 0})
       .should.throw('The cid \'0\' could not be found');
-
-    done();
   });
-  it('should update records', function (done) {
+  
+  it('should update records', function () {
     var books = store('books');
     books.store = {
       1: {cid: 1, tuna: true},
@@ -34,9 +33,9 @@ describe('.update()', function () {
     books.store.should.eql({
       1: {cid: 1, tuna: false},
       8: {cid: 8, ham: 'bacon'}
-    });
-    done();
+    })
   });
+
   it('should emit an \'update\' event', function (done) {
     var books = store('books');
     books.on('update', function() {done()});

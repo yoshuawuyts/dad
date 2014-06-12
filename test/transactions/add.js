@@ -12,7 +12,7 @@ var store = require ('../..');
  */
 
 describe('.add()', function () {
-  it('should catch errors', function (done) {
+  it('should catch errors', function () {
     var books = store('books');
     books.add.bind(books, {'foo': 'bar'})
       .should.not.throw('Store.add: argument should be an object, or an array of Objects');
@@ -22,11 +22,9 @@ describe('.add()', function () {
 
     books.add.bind(books, 1234)
       .should.throw('Store.add: argument should be an object, or an array of Objects');
-
-    done();
   });
 
-  it('should save data to the store', function (done) {
+  it('should save data to the store', function () {
     var books = store('books');
 
     books.add({'foo': 'bar'});
@@ -38,11 +36,9 @@ describe('.add()', function () {
       {'bar': 'foo'}, 
       {'baz': 'daz'}
     ]);
-    
-    done();
   });
 
-  it('should track the cid\'s of data', function (done) {
+  it('should track the cid\'s of data', function () {
     var books = store('books');
 
     books.add({'foo': 'bar'});
@@ -57,8 +53,6 @@ describe('.add()', function () {
       {'cid': 1}, 
       {'cid': 2}
     ]);
-
-    done();
   });
 
   it('should emit an \'add\' event', function (done) {
