@@ -1,7 +1,5 @@
-# Dad <sup>[![Version Badge](http://vb.teelaun.ch/yoshuawuyts/dad.svg)](https://npmjs.org/package/dad)</sup>
-
-[![Build Status](https://travis-ci.org/yoshuawuyts/dad.svg)](https://travis-ci.org/yoshuawuyts/dad)
-[![Coverage Status](https://coveralls.io/repos/yoshuawuyts/dad/badge.png)](https://coveralls.io/r/yoshuawuyts/dad)
+# Dad <sup>
+[![NPM version][npm-image]][npm-url] [![build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url]
 
 Data micro-framework built for composability and paternity. WIP
 
@@ -72,3 +70,11 @@ books.fetch();
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license) © [Yoshua Wuyts](yoshuawuyts.com)
+
+
+[npm-image]: https://img.shields.io/npm/v/dad.svg?style=flat
+[npm-url]: https://npmjs.org/package/dad
+[travis-image]: https://img.shields.io/travis/yoshuawuyts/dad.svg?style=flat
+[travis-url]: https://travis-ci.org/yoshuawuyts/dad
+[coveralls-image]: https://img.shields.io/coveralls/yoshuawuyts/dad.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/yoshuawuyts/dad?branch=master
