@@ -25,14 +25,14 @@ dad()           // Create a named store.
 .on()           // Subscribe to events on the store.
 .emit()         // Trigger an event on the store.
 
-.adapters()     // Define synchronization adapters to be called.
 .baseUrl()      // Define the base url for store server persistance.
+.adapter()      // Register an adapter.
+.persist()      // Persist transactions to the adapters.
 ````
 ### Pending
 ````js
 .hasMany()      // Define a store as an attribute on the model.
 
-.save()         // Persist the record changes to the adapters.
 .fetch()        // Fetch records from the adapters.
 ````
 ### Under consideration

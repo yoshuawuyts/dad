@@ -15,7 +15,7 @@ describe('.baseUrl()', function () {
   it('should catch errors', function () {
     var books = store('books');
 
-    books.baseUrl.bind(books, 123).should.throw('url should be a string');
+    books.baseUrl.bind(books, 123).should.throw('Url should be a string');
   });
   it('should save an url', function () {
     var books = store('books');
