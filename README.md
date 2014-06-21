@@ -1,43 +1,13 @@
 # Dad <sup>
 [![NPM version][npm-image]][npm-url] [![build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url]
 
-Data micro-framework built for composability and paternity. WIP
+Composable data stores for node.js and the browser. Dad's small ~300 SLOC codebase implements only methods that are common in most datastores. This includes models, validation and persistance.
+
+No assumptions about your backend are made. Through adapters you can synchronize your data with any backend. Official adapters exist for HAL, REST and LocalStorage.
 
 ## Installation
 ````bash
 $ npm i --save dad
-````
-
-## Progress
-### Implemented
-````js
-dad()           // Create a named store.
-.attr()         // Define an attribute on the model.
-.validate()     // Validate record compliance with the model.
-
-.add()          // Save a record or an array of records to the store.
-.get()          // Get a record from the store at `cid`.
-.update()       // Update a record at `cid`.
-.remove()       // Remove a record from the store at `cid`.
-
-.on()           // Subscribe to events on the store.
-.emit()         // Trigger an event on the store.
-
-.baseUrl()      // Define the base url for store server persistance.
-.adapter()      // Register an adapter.
-.persist()      // Persist transactions to the adapters.
-````
-### Pending
-````js
-.hasMany()      // Define a store as an attribute on the model.
-
-.fetch()        // Fetch records from the adapters.
-````
-### Under consideration
-````js
-.sync()         // Synchronize data with the server over HTTP.
-.prune()        // Remove records with an empty reference count.
-.toJSON()       // Get records as JSON.
 ````
 
 ## Example
@@ -57,16 +27,112 @@ books
 
 books.add({title: 'Ferrets', author: 'Tobi', pages: 12});
 books.update({cid: 0, title: 'Lizards', author: 'Tobi', pages: 12});
+````
+## API
+#### dad()
+Create a named store.
+````js
+var store = require('dad');
+var books = store('books');
+var chapters = store('chapters');
+````
 
-// persist changes to server
+#### .attr()
+Define an attribute on the model.
+````js
+books
+  .attr('title', {type: 'string', required: true})
+  .attr('author', {type: 'string', required: true})
+  .attr(pages, {type: 'number'});
+````
 
-books.save();
+#### .hasMany() [wip]
+Define a store as an attribute on the model.
+````js
+books.hasMany('chapters', chapters);
+````
+
+#### .baseUrl()
+Define the base url for store server persistance.
+````js
+books.baseUrl('api.mysite.com/books');
+````
+
+### Transactions
+#### .add()
+Save a record or an array of records to the store. Records get a `cid` assigned
+automatically. Emits an `add` event when completed.
+````js
+chapters.add([
+  {name: 'chapter 1', pages: 2},
+  {name: 'chapter 2', pages: 6},
+  {name: 'chapter 3', pages: 4}
+]);
+
+books.add({
+  title: 'Fatherly jokes',
+  author: 'Tobi',
+  pages: 12,
+  chapters: [0]
+});
+````
+
+#### .get()
+Get a record from the store at `cid`.
+````js
+var fatherlyJokes = books.get(0);
+// -> {
+//      cid: 0,
+//      title: 'Fatherly jokes',
+//      author: 'Tobi',
+//      pages: 12,
+//      chapters: [{
+//        cid: 0,
+//        name: 'chapter 1',
+//        pages: 2
+//      }]
+//    };
+````
+
+#### .update()
+Update a record at `cid`. Emits an `update` event when completed.
+````js
+chapters.update()
+````
+
+#### .remove()
+Remove a record from the store at `cid`. Emits a `remove` event when completed.
+````js
+chapters.remove(2);
+````
+
+### Persistance
+#### .push()
+Persist the record changes to the backend. Can be provided with optional HTTP headers. Emits a `push` event when completed, else it emits an `error` event.
+````js
+books.push();
+
+books.push({
+  API_KEY: 'mysecretkey',
+  ANOTHER_HEADER: 'some value'
+});
+````
+
+#### .fetch() [wip]
+Fetch records from the server over HTTP. Can be provided with optional HTTP
+headers. Emits a `fetch` event when completed, else it emits an `error` event.
+````js
 books.fetch();
+
+books.fetch({
+  API_KEY: 'mysecretkey',
+  ANOTHER_HEADER: 'some value'
+});
 ````
 
 ## References
 - [Issues](https://github.com/yoshuawuyts/dad/issues)
-- [Documentation](https://github.com/yoshuawuyts/dad/tree/master/docs/methods.md)
+- [Pull Requests](https://github.com/yoshuawuyts/dad/pulls)
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license) © [Yoshua Wuyts](yoshuawuyts.com)
