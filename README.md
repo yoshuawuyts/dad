@@ -10,7 +10,7 @@ No assumptions about your backend are made. Through adapters you can synchronize
 $ npm i --save dad
 ````
 
-## Example
+## Overview
 ````js
 var store = require('dad');
 var books = store('books');
@@ -136,7 +136,6 @@ books.fetch({
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license) © [Yoshua Wuyts](yoshuawuyts.com)
-
 
 [npm-image]: https://img.shields.io/npm/v/dad.svg?style=flat
 [npm-url]: https://npmjs.org/package/dad
