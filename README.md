@@ -1,4 +1,4 @@
-# Dad <sup>
+# Dad
 [![NPM version][npm-image]][npm-url] [![build status][travis-image]][travis-url] [![Test coverage][coveralls-image]][coveralls-url]
 
 Composable data stores for node.js and the browser. Dad's small ~300 SLOC codebase implements only methods that are common in most datastores. This includes models, validation and persistance.
@@ -43,13 +43,13 @@ Define an attribute on the model.
 books
   .attr('title', {type: 'string', required: true})
   .attr('author', {type: 'string', required: true})
-  .attr(pages, {type: 'number'});
+  .attr('pages', {type: 'number'});
 ````
 
 #### .hasMany() [wip]
 Define a store as an attribute on the model.
 ````js
-books.hasMany('chapters', chapters);
+books.hasMany(chapters, {required: true});
 ````
 
 #### .baseUrl()
@@ -60,8 +60,8 @@ books.baseUrl('api.mysite.com/books');
 
 ### Transactions
 #### .add()
-Save a record or an array of records to the store. Records get a `cid` assigned
-automatically. Emits an `add` event when completed.
+Save a record or an array of records to the store. Records get a `{Number} cid` 
+assigned automatically. Emits an `add` event when completed.
 ````js
 chapters.add([
   {name: 'chapter 1', pages: 2},
