@@ -1,6 +1,6 @@
 {
   "name": "dad",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Data micro-framework",
   "main": "lib/application.js",
   "scripts": {
