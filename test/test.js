@@ -5,7 +5,7 @@
 
 require('./application/application');
 require('./application/attr');
-require('./application/hasMany');
+// require('./application/hasMany');
 require('./application/validate');
 require('./application/allAccountedFor');
 
