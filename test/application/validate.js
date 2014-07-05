@@ -14,46 +14,24 @@ var store = require ('../..');
 describe('.validate()', function () {
   it('should catch errors', function () {
     var books = store('books');
-
-    books.validate.bind(books, 'not an object')
-      .should.throw('record should be an object');
+    books.model = {foo: 'bar'};
+    
+    books.validate.bind(books, 123)
+      .should.throw('Property should be a string');
+    books.validate.bind(books, 'baz')
+      .should.throw('Target should exist');
+    books.validate.bind(books, 'baz', 'foo')
+      .should.throw('Property is not defined');
   });
 
-  it('should reject undefined properties', function () {
+  it('should validate targets', function () {
     var books = store('books');
+    var myInteger = 1337;
     books.model = {
       foo: {type: 'number'},
       bar: {type: 'string'}
     };
 
-    books.validate({
-      baz: 123
-    }).should.eql(false);
-  });
-
-  it('should validate records', function () {
-    var books = store('books');
-    books.model = {
-      foo: {type: 'number'},
-      bar: {type: 'string'}
-    };
-
-    books.validate({foo: 'something', bar: 'something'})
-      .should.eql(false);
-    books.validate({foo: 123, bar: 'something'})
-      .should.eql(true);
-  });
-
-  it('should check for required properties', function () {
-    var books = store('books');
-    books.model = {
-      foo: {type: 'number', required: true},
-      bar: {type: 'string'}
-    };
-
-    books.validate({foo: 123})
-      .should.eql(true);
-    books.validate({bar: 'something'})
-      .should.eql(false);
+    books.validate('foo', myInteger);
   });
 });

@@ -58,6 +58,18 @@ Define the base url for store server persistance.
 books.baseUrl('api.mysite.com/books');
 ````
 
+#### .validate()
+Validate a value against a property on the model.
+```js
+books.validate('name', 'Tobi');
+```
+
+#### .allAccountedFor()
+Check if an object accounts for all properties demanded by the model.
+```js
+books.allAccountedFor({foo: 'bar', baz: 'bin'});
+```
+
 ### Transactions
 #### .add()
 Save a record or an array of records to the store. Records get a `{Number} cid` 
