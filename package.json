@@ -27,12 +27,12 @@
   "homepage": "https://github.com/yoshuawuyts/dad",
   "dependencies": {
     "customs": "^0.1.1",
-    "foyer": "^1.1.0"
+    "foyer": "^1.1.0",
+    "debug": "^0.8.0"
   },
   "devDependencies": {
     "should": "^3.3.0",
     "mocha": "^1.18.2",
-    "debug": "^0.8.0",
     "istanbul": "^0.2.9",
     "coveralls": "^2.10.0"
   }
