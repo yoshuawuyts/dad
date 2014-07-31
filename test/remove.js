@@ -5,7 +5,7 @@
  */
 
 var should = require('should');
-var store = require ('../..');
+var store = require ('../');
 var books = store('books');
 
 /**
