@@ -4,4 +4,4 @@ node_js:
 install:
   - npm install
 script:
-  - npm run-script coverage
+  - ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report lcovonly --recursive -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
