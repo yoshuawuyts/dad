@@ -17,7 +17,7 @@ var books = store('books');
 
 // attributes
 books
-  .baseUrl('api.mysite.com/books')
+  .settings({baseUrl: 'api.mysite.com/books'})
   .schema({
     title: {type: 'string', required: true},
     author: {type: 'string', required: true},
