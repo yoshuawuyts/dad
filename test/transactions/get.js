@@ -6,6 +6,15 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
 
 /**
  * Test
@@ -13,7 +22,6 @@ var store = require ('../..');
 
 describe('.get()', function () {
   it('should catch errors', function () {
-    var books = store('books');
     books.store = {1: {tuna: true}};
 
     books.get.bind(books, 'something').should.throw('Provide a number as an argument');
@@ -23,7 +31,6 @@ describe('.get()', function () {
   });
 
   it('should return a record from the store', function () {
-    var books = store('books');
     books.store = {1: {tuna: true}};
     books.get(1).should.eql({tuna: true});
   });

@@ -3,11 +3,10 @@
  * See: https://github.com/gotwarlost/istanbul/issues/197
  */
 
-require('./application/application');
-require('./application/attr');
-// require('./application/hasMany');
-require('./application/validate');
 require('./application/allAccountedFor');
+require('./application/application');
+require('./application/schema');
+require('./application/validate');
 
 require('./transactions/add');
 require('./transactions/get');
@@ -16,4 +15,5 @@ require('./transactions/update');
 
 require('./persistance/baseUrl');
 require('./persistance/adapter');
-require('./persistance/persist');
+require('./persistance/pull');
+require('./persistance/push');

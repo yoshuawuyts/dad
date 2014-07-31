@@ -6,14 +6,23 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
+
 
 /**
  * Test
  */
 
 describe('.add()', function () {
-  it('should catch errors', function () {
-    var books = store('books');
+  it('should catch errors', function() {
     books.add.bind(books, {'foo': 'bar'})
       .should.not.throw('Store.add: argument should be an object, or an array of Objects');
 
@@ -24,9 +33,7 @@ describe('.add()', function () {
       .should.throw('Store.add: argument should be an object, or an array of Objects');
   });
 
-  it('should save data to the store', function () {
-    var books = store('books');
-
+  it('should save data to the store', function() {
     books.add({'foo': 'bar'});
     books.store.should.containDeep([{'foo': 'bar'}]);
 
@@ -38,9 +45,7 @@ describe('.add()', function () {
     ]);
   });
 
-  it('should track the cid\'s of data', function () {
-    var books = store('books');
-
+  it('should track the cid\'s of data', function() {
     books.add({'foo': 'bar'});
     books.store.should.containDeep([{'cid': 0}]);
 
@@ -55,8 +60,7 @@ describe('.add()', function () {
     ]);
   });
 
-  it('should emit an \'add\' event', function (done) {
-    var books = store('books');
+  it('should emit an \'add\' event', function(done) {
     books.on('add', function() {done()});
 
     books.add({'foo': 'bar'});

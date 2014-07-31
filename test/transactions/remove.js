@@ -6,6 +6,16 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
+
 
 /**
  * Test
@@ -13,7 +23,6 @@ var store = require ('../..');
 
 describe('.remove()', function () {
   it('should catch errors', function () {
-    var books = store('books');
     books.store = {1: {tuna: true}};
 
     books.remove.bind(books, 'hello').should.throw('Provide a cid as an argument');
@@ -21,7 +30,6 @@ describe('.remove()', function () {
   });
 
   it('should remove a record', function () {
-    var books = store('books');
     books.store = {
       1: {tuna: true},
       2: {name: 'Tobi'}
@@ -32,7 +40,6 @@ describe('.remove()', function () {
   });
 
   it('should emit a \'remove\' event', function () {
-    var books = store('books');
     books.store = {
       1: {tuna: true},
       2: {name: 'Tobi'}

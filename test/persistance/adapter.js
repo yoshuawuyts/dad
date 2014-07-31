@@ -6,6 +6,16 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
+
 
 /**
  * Test
@@ -13,13 +23,10 @@ var store = require ('../..');
 
 describe('.adapter()', function () {
   it('should catch errors', function () {
-    var books = store('books');
-
     books.adapter.bind(books, 123).should.throw('Adapter should be a function');
   });
 
   it('should store an adapter', function () {
-    var books = store('books');
     function x() {};
     function y() {};
     books

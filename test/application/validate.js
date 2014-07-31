@@ -6,6 +6,16 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
+
 
 /**
  * Test
@@ -13,7 +23,6 @@ var store = require ('../..');
 
 describe('.validate()', function () {
   it('should catch errors', function () {
-    var books = store('books');
     books.model = {foo: 'bar'};
     
     books.validate.bind(books, 123)
@@ -25,7 +34,6 @@ describe('.validate()', function () {
   });
 
   it('should validate targets', function () {
-    var books = store('books');
     var myInteger = 1337;
     books.model = {
       foo: {type: 'number'},

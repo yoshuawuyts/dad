@@ -6,6 +6,16 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
+
 
 /**
  * Test
@@ -13,13 +23,10 @@ var store = require ('../..');
 
 describe('.baseUrl()', function () {
   it('should catch errors', function () {
-    var books = store('books');
-
     books.baseUrl.bind(books, 123).should.throw('Url should be a string');
   });
+  
   it('should save an url', function () {
-    var books = store('books');
-
     books.baseUrl('api.mysite.dev');
     books.url.should.eql('api.mysite.dev');
   });

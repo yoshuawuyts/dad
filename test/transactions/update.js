@@ -6,6 +6,15 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
 
 /**
  * Test
@@ -13,7 +22,6 @@ var store = require ('../..');
 
 describe('.update()', function () {
   it('should catch errors', function () {
-    var books = store('books');
     books.store = {1: {tuna: true}};
 
     books.update.bind(books, {hello: 'you'})
@@ -23,7 +31,6 @@ describe('.update()', function () {
   });
   
   it('should update records', function () {
-    var books = store('books');
     books.store = {
       1: {cid: 1, tuna: true},
       8: {cid: 8, ham: 'bacon'}
@@ -37,7 +44,6 @@ describe('.update()', function () {
   });
 
   it('should emit an \'update\' event', function (done) {
-    var books = store('books');
     books.on('update', function() {done()});
     books.store = {1: {tuna: true}};
 

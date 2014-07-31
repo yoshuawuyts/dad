@@ -6,6 +6,16 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
+
 
 /**
  * Test
@@ -13,7 +23,6 @@ var store = require ('../..');
 
 describe('.persist()', function () {
   it('should catch errors', function (done) {
-    var books = store('books');
     books.on('failure', function(){done()});
     books.adapters = [function(end) {end('nope')}];
 
@@ -21,7 +30,6 @@ describe('.persist()', function () {
   });
 
   it('should call the adapters', function (done) {
-    var books = store('books');
     books.on('success', function() {done()});
     books.adapters = [
       function(end) {setTimeout(function(){end()}, 300);}, 

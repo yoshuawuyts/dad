@@ -6,6 +6,16 @@
 
 var should = require('should');
 var store = require ('../..');
+var books = store('books');
+
+/**
+ * Before each.
+ */
+
+beforeEach(function() {
+  books = store('books');
+});
+
 
 /**
  * Test
@@ -13,15 +23,11 @@ var store = require ('../..');
 
 describe('dad()', function () {
   it('should initialize empty objects', function () {
-    var books = store('books');
-
     books.store.should.be.empty;
     books.model.should.be.empty;
   });
 
   it('should initialize with a \'name\'', function () {
-    var books = store('books');
-
     books.name.should.eql('books');
 
     var something = store();
@@ -29,8 +35,6 @@ describe('dad()', function () {
   });
 
   it('should initialize with an event system', function () {
-    var books = store('books');
-
     books.on.should.exist;
     books.emit.should.exist;
   });
