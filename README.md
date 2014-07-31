@@ -50,12 +50,12 @@ books
   });
 ````
 
-#### .baseUrl()
+#### .settings()
 ````js
-// Define the base url for store server persistance. Takes a {String} url as
-// an argument.
+// Define settings to be used. Settings can be used to store synchronization
+// url's and auth tokens. Takes an {Object} opts as an argument.
 
-books.baseUrl('api.mysite.com/books');
+books.settings({baseUrl: 'api.mysite.com/books'});
 ````
 
 #### .validate()

@@ -20,7 +20,7 @@ beforeEach(function() {
  * Test
  */
 
-describe('.persist()', function () {
+describe('.pull()', function () {
   it('should catch errors');
   it('should call the adapters');
 });

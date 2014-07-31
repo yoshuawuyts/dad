@@ -16,7 +16,6 @@ beforeEach(function() {
   books = store('books');
 });
 
-
 /**
  * Test
  */
