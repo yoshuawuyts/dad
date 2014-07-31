@@ -27,8 +27,9 @@
   "homepage": "https://github.com/yoshuawuyts/dad",
   "dependencies": {
     "customs": "^0.1.1",
+    "debug": "^0.8.0",
     "foyer": "^1.1.0",
-    "debug": "^0.8.0"
+    "object-join": "^1.0.1"
   },
   "devDependencies": {
     "should": "^3.3.0",

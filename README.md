@@ -19,9 +19,11 @@ var books = store('books');
 
 books
   .baseUrl('api.mysite.com/books')
-  .attr('title', {type: 'string', required: true})
-  .attr('author', {type: 'string', required: true})
-  .attr(pages, {type: 'number'});
+  .schema({
+    title: {type: 'string', required: true},
+    author: {type: 'string', required: true},
+    pages: {type: 'number}
+  });
 
 // transactions
 
@@ -37,19 +39,15 @@ var books = store('books');
 var chapters = store('chapters');
 ````
 
-#### .attr()
-Define an attribute on the model.
+#### .schema()
+Define the schema for the store.
 ````js
 books
-  .attr('title', {type: 'string', required: true})
-  .attr('author', {type: 'string', required: true})
-  .attr('pages', {type: 'number'});
-````
-
-#### .hasMany() [wip]
-Define a store as an attribute on the model.
-````js
-books.hasMany(chapters, {required: true});
+  .schema({
+    title: {type: 'string', required: true},
+    author: {type: 'string', required: true},
+    pages: {type: 'number}
+  });
 ````
 
 #### .baseUrl()
