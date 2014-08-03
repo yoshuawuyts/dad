@@ -20,12 +20,12 @@ beforeEach(function() {
  * Test
  */
 
-describe('.persist()', function () {
+describe('.push()', function () {
   it('should catch errors', function (done) {
     books.on('failure', function(){done()});
     books.adapters = [function(end) {end('nope')}];
 
-    books.persist();
+    books.push();
   });
 
   it('should call the adapters', function (done) {
@@ -35,6 +35,6 @@ describe('.persist()', function () {
       function(end) {end()}
     ];
     
-    books.persist();
+    books.push();
   });
 });
