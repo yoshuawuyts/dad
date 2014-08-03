@@ -60,6 +60,17 @@ describe('.add()', function () {
     ]);
   });
 
+  it('should save transactions', function() {
+    books.add({foo: 'bar'});
+    books.transactions.should.eql([{
+      action: 'add',
+      data: {
+        cid: 0,
+        foo: 'bar'
+      }
+    }]);
+  });
+
   it('should emit an \'add\' event', function(done) {
     books.on('add', function() {done()});
 

@@ -26,13 +26,14 @@ describe('.adapter()', function () {
     books.adapter.bind(books, 123).should.throw('Adapter should be a function');
   });
 
-  it('should store an adapter', function () {
-    function x() {};
-    function y() {};
+  it('should store an adapter', function() {
+    function x() {return 3};
+    function y() {return 5};
     books
       .adapter(x)
       .adapter(y);
 
-    books.adapters.should.eql([x, y]);
+    books.adapters[0]().should.eql(3);
+    books.adapters[1]().should.eql(5);
   });
 });

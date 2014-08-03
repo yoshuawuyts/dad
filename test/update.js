@@ -43,6 +43,20 @@ describe('.update()', function () {
     })
   });
 
+  it('should save transactions', function() {
+    books.store = {
+      1: {cid: 1, tuna: true}
+    }
+    books.update({cid: 1, tuna: false});
+    books.transactions.should.eql([{
+      action: 'update',
+      data: {
+        cid: 1,
+        tuna: false
+      }
+    }]);
+  });
+
   it('should emit an \'update\' event', function (done) {
     books.on('update', function() {done()});
     books.store = {1: {tuna: true}};

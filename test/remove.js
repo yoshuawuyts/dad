@@ -16,7 +16,6 @@ beforeEach(function() {
   books = store('books');
 });
 
-
 /**
  * Test
  */
@@ -39,12 +38,26 @@ describe('.remove()', function () {
     books.store.should.eql({1: {tuna: true}});
   });
 
+  it('should save transactions', function() {
+    books.store = {
+      1: {cid: 1, tuna: true}
+    };
+    books.remove(1);
+    books.transactions.should.eql([{
+      action: 'remove',
+      data: {
+        cid: 1,
+        tuna: true
+      }
+    }]);
+  });
+
   it('should emit a \'remove\' event', function () {
     books.store = {
       1: {tuna: true},
       2: {name: 'Tobi'}
     };
 
-    books.remove(2)
+    books.remove(2);
   });
 });
