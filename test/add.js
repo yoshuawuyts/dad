@@ -40,7 +40,7 @@ describe('.add()', function () {
     books.add([{'bar': 'foo'}, {'baz': 'daz'}]);
     books.store.should.containDeep([
       {'foo': 'bar'},
-      {'bar': 'foo'}, 
+      {'bar': 'foo'},
       {'baz': 'daz'}
     ]);
   });
@@ -50,12 +50,12 @@ describe('.add()', function () {
     books.store.should.containDeep([{'cid': 0}]);
 
     books.add([
-      {'baz': 'boz'}, 
+      {'baz': 'boz'},
       {'bir': 'bar'}
     ]);
     books.store.should.containDeep([
-      {'cid': 0}, 
-      {'cid': 1}, 
+      {'cid': 0},
+      {'cid': 1},
       {'cid': 2}
     ]);
   });
@@ -71,8 +71,8 @@ describe('.add()', function () {
     }]);
   });
 
-  it('should emit an \'add\' event', function(done) {
-    books.on('add', function() {done()});
+  it('should emit a \'change\' event', function(done) {
+    books.on('change', function() {done()});
 
     books.add({'foo': 'bar'});
   });

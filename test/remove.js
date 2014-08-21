@@ -52,11 +52,12 @@ describe('.remove()', function () {
     }]);
   });
 
-  it('should emit a \'remove\' event', function () {
+  it('should emit a \'change\' event', function (done) {
     books.store = {
       1: {tuna: true},
       2: {name: 'Tobi'}
     };
+    books.on('change', function() {done()});
 
     books.remove(2);
   });

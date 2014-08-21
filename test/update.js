@@ -29,7 +29,7 @@ describe('.update()', function () {
     books.update.bind(books, {cid: 0})
       .should.throw('The cid \'0\' could not be found');
   });
-  
+
   it('should update records', function () {
     books.store = {
       1: {cid: 1, tuna: true},
@@ -57,8 +57,8 @@ describe('.update()', function () {
     }]);
   });
 
-  it('should emit an \'update\' event', function (done) {
-    books.on('update', function() {done()});
+  it('should emit a \'change\' event', function (done) {
+    books.on('change', function() {done()});
     books.store = {1: {tuna: true}};
 
     books.update({cid: 1, tuna: false});
