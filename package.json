@@ -27,11 +27,10 @@
   "homepage": "https://github.com/yoshuawuyts/dad",
   "dependencies": {
     "customs": "^0.1.1",
-    "debug": "^0.8.0",
+    "debug": "^1.0.4",
     "foyer": "^1.2.0",
     "object-join": "^1.0.1",
-    "superagent": "^0.18.2",
-    "xhr": "^1.14.1"
+    "request": "^2.40.0"
   },
   "devDependencies": {
     "should": "^3.3.0",
