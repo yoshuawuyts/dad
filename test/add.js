@@ -35,10 +35,10 @@ describe('.add()', function () {
 
   it('should save data to the store', function() {
     books.add({'foo': 'bar'});
-    books.store.should.containDeep([{'foo': 'bar'}]);
+    books._store.should.containDeep([{'foo': 'bar'}]);
 
     books.add([{'bar': 'foo'}, {'baz': 'daz'}]);
-    books.store.should.containDeep([
+    books._store.should.containDeep([
       {'foo': 'bar'},
       {'bar': 'foo'},
       {'baz': 'daz'}
@@ -47,13 +47,13 @@ describe('.add()', function () {
 
   it('should track the cid\'s of data', function() {
     books.add({'foo': 'bar'});
-    books.store.should.containDeep([{'cid': 0}]);
+    books._store.should.containDeep([{'cid': 0}]);
 
     books.add([
       {'baz': 'boz'},
       {'bir': 'bar'}
     ]);
-    books.store.should.containDeep([
+    books._store.should.containDeep([
       {'cid': 0},
       {'cid': 1},
       {'cid': 2}
@@ -62,7 +62,7 @@ describe('.add()', function () {
 
   it('should save transactions', function() {
     books.add({foo: 'bar'});
-    books.transactions.should.eql([{
+    books._transactions.should.eql([{
       action: 'add',
       data: {
         cid: 0,

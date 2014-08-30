@@ -28,13 +28,13 @@ describe('.schema()', function () {
 
   it('should define an attribute on the model', function () {
     books.schema({bar: {}});
-    books.model.should.have.keys('bar');
+    books._model.should.have.keys('bar');
     books.schema({foo: {}});
-    books.model.should.have.keys('bar', 'foo');
+    books._model.should.have.keys('bar', 'foo');
   });
 
   it('should save \'meta\' arguments', function () {
     books.schema({bar: {type: 'book'}});
-    books.model.should.eql({'bar': {type: 'book'}});
+    books._model.should.eql({'bar': {type: 'book'}});
   });
 });

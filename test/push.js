@@ -23,14 +23,14 @@ beforeEach(function() {
 describe('.push()', function () {
   it('should catch errors', function (done) {
     books.on('failure', function(){done()});
-    books.adapters = [function(end) {end('nope')}];
+    books._adapters = [function(end) {end('nope')}];
 
     books.push();
   });
 
   it('should call the adapters', function (done) {
     books.on('success', function() {done()});
-    books.adapters = [
+    books._adapters = [
       function(end) {setTimeout(function(){end()}, 300);}, 
       function(end) {end()}
     ];

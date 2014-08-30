@@ -22,7 +22,7 @@ beforeEach(function() {
 
 describe('.get()', function () {
   it('should catch errors', function () {
-    books.store = {1: {tuna: true}};
+    books._store = {1: {tuna: true}};
 
     books.get.bind(books, 'something').should.throw('Provide a number as an argument');
     books.get.bind(books, undefined).should.throw('Provide a number as an argument');
@@ -31,7 +31,7 @@ describe('.get()', function () {
   });
 
   it('should return a record from the store', function () {
-    books.store = {1: {tuna: true}};
+    books._store = {1: {tuna: true}};
     books.get(1).should.eql({tuna: true});
   });
 });

@@ -27,10 +27,10 @@ describe('.settings()', function () {
   });
   it('should save settings', function() {
     books.settings({foo: 'bar'});
-    books.opts.should.eql({foo: 'bar'});
+    books._opts.should.eql({foo: 'bar'});
     books.settings({foo: 'baz'});
-    books.opts.should.eql({foo: 'baz'});
+    books._opts.should.eql({foo: 'baz'});
     books.settings({baz: 'baz'});
-    books.opts.should.eql({foo: 'baz', baz: 'baz'});
+    books._opts.should.eql({foo: 'baz', baz: 'baz'});
   });
 });

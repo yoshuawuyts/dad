@@ -22,7 +22,7 @@ beforeEach(function() {
 
 describe('.update()', function () {
   it('should catch errors', function () {
-    books.store = {1: {tuna: true}};
+    books._store = {1: {tuna: true}};
 
     books.update.bind(books, {hello: 'you'})
       .should.throw('Provide an object with a cid as an argument');
@@ -31,24 +31,24 @@ describe('.update()', function () {
   });
 
   it('should update records', function () {
-    books.store = {
+    books._store = {
       1: {cid: 1, tuna: true},
       8: {cid: 8, ham: 'bacon'}
     };
 
     books.update({cid: 1, tuna: false});
-    books.store.should.eql({
+    books._store.should.eql({
       1: {cid: 1, tuna: false},
       8: {cid: 8, ham: 'bacon'}
     })
   });
 
   it('should save transactions', function() {
-    books.store = {
+    books._store = {
       1: {cid: 1, tuna: true}
     }
     books.update({cid: 1, tuna: false});
-    books.transactions.should.eql([{
+    books._transactions.should.eql([{
       action: 'update',
       data: {
         cid: 1,
@@ -59,7 +59,7 @@ describe('.update()', function () {
 
   it('should emit a \'change\' event', function (done) {
     books.on('change', function() {done()});
-    books.store = {1: {tuna: true}};
+    books._store = {1: {tuna: true}};
 
     books.update({cid: 1, tuna: false});
   });

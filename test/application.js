@@ -23,15 +23,15 @@ beforeEach(function() {
 
 describe('dad()', function () {
   it('should initialize empty objects', function () {
-    books.store.should.be.empty;
-    books.model.should.be.empty;
+    books._store.should.be.empty;
+    books._model.should.be.empty;
   });
 
   it('should initialize with a \'name\'', function () {
-    books.name.should.eql('books');
+    books._name.should.eql('books');
 
     var something = store();
-    something.name.should.eql('');
+    something._name.should.eql('');
   });
 
   it('should initialize with an event system', function () {

@@ -33,7 +33,7 @@ describe('.adapter()', function () {
       .adapter(x)
       .adapter(y);
 
-    books.adapters[0]().should.eql(3);
-    books.adapters[1]().should.eql(5);
+    books._adapters[0]().should.eql(3);
+    books._adapters[1]().should.eql(5);
   });
 });

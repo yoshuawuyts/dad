@@ -23,7 +23,7 @@ beforeEach(function() {
 
 describe('.validate()', function () {
   it('should catch errors', function () {
-    books.model = {foo: 'bar'};
+    books._model = {foo: 'bar'};
     
     books.validate.bind(books, 123)
       .should.throw('Property should be a string');
@@ -35,7 +35,7 @@ describe('.validate()', function () {
 
   it('should validate targets', function () {
     var myInteger = 1337;
-    books.model = {
+    books._model = {
       foo: {type: 'number'},
       bar: {type: 'string'}
     };

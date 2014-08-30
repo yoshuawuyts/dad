@@ -26,7 +26,7 @@ describe('.allAccountedFor()', function () {
       .should.throw('Record should be an object');
   });
   it('should check if all required properties are present', function() {
-    books.model = {
+    books._model = {
       foo: {required: true},
       baz: {required: true},
       bin: {}

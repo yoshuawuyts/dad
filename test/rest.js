@@ -22,7 +22,7 @@ beforeEach(function() {
 
 describe('rest-adapter', function () {
   it('should do stuff', function() {
-    books.adapters = [books.rest];
+    books._adapters = [books.rest];
     books.push();
   });
 });
