@@ -21,20 +21,17 @@ beforeEach(function() {
  */
 
 describe('.schema()', function () {
-  it('should catch errors', function () {
-    books.schema.bind(123)
-      .should.throw('Schema should be an object');
-  });
 
   it('should define an attribute on the model', function () {
-    books.schema({bar: {}});
-    books._model.should.have.keys('bar');
-    books.schema({foo: {}});
-    books._model.should.have.keys('bar', 'foo');
+    books.schema = {bar: {}};
+    books._schema.should.have.keys('bar');
+    books.schema = {foo: {}};
+    books._schema.should.have.keys('foo');
   });
 
   it('should save \'meta\' arguments', function () {
-    books.schema({bar: {type: 'book'}});
-    books._model.should.eql({'bar': {type: 'book'}});
+    books.schema = {bar: {type: 'book'}};
+    books._schema.should.eql({'bar': {type: 'book'}});
   });
+
 });

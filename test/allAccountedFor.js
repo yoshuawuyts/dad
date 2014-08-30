@@ -28,7 +28,7 @@ describe('.allAccountedFor()', function () {
   it('should check if all required properties are present', function() {
     var counter = 0;
 
-    books._model = {
+    books._schema = {
       foo: {required: true},
       baz: {required: true},
       bin: {}

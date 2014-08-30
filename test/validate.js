@@ -23,7 +23,7 @@ beforeEach(function() {
 
 describe('.validate()', function () {
   it('should catch errors', function () {
-    books._model = {foo: 'bar'};
+    books._schema = {foo: 'bar'};
 
     books.validate.bind(books, 123)
       .should.throw('Record should be an object');
@@ -37,7 +37,7 @@ describe('.validate()', function () {
       foo: 1337,
       bar: {}
     };
-    books._model = {
+    books._schema = {
       foo: {type: 'number'},
       bar: {type: 'string'}
     };

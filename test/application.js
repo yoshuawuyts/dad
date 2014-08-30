@@ -24,7 +24,7 @@ beforeEach(function() {
 describe('dad()', function () {
   it('should initialize empty objects', function () {
     books._store.should.be.empty;
-    books._model.should.be.empty;
+    books._schema.should.be.empty;
   });
 
   it('should initialize with a \'name\'', function () {
