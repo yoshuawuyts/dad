@@ -101,17 +101,6 @@ books.add({
 Get a record from the store at cid.
 ````js
 var fatherlyJokes = books.get(0);
-// -> {
-//      cid: 0,
-//      title: 'Fatherly jokes',
-//      author: 'Tobi',
-//      pages: 12,
-//      chapters: [{
-//        cid: 0,
-//        name: 'chapter 1',
-//        pages: 2
-//      }]
-//    };
 ````
 
 #### .update(record)
