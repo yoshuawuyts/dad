@@ -24,22 +24,32 @@ beforeEach(function() {
 describe('.validate()', function () {
   it('should catch errors', function () {
     books._model = {foo: 'bar'};
-    
+
     books.validate.bind(books, 123)
-      .should.throw('Property should be a string');
-    books.validate.bind(books, 'baz')
-      .should.throw('Target should exist');
-    books.validate.bind(books, 'baz', 'foo')
-      .should.throw('Property is not defined');
+      .should.throw('Record should be an object');
+
+    books.validate.bind(books, {})
+      .should.not.throw('Record should be an object');
   });
 
-  it('should validate targets', function () {
-    var myInteger = 1337;
+  it('should validate targets', function (done) {
+    var myObj = {
+      foo: 1337,
+      bar: {}
+    };
     books._model = {
       foo: {type: 'number'},
       bar: {type: 'string'}
     };
 
-    books.validate('foo', myInteger);
+    books.on('validated', function(msg) {
+      msg.should.eql({
+        foo: true,
+        bar: false
+      });
+      done();
+    });
+
+    books.validate(myObj);
   });
 });
