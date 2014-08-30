@@ -26,21 +26,31 @@ describe('.allAccountedFor()', function () {
       .should.throw('Record should be an object');
   });
   it('should check if all required properties are present', function() {
+    var counter = 0;
+
     books._model = {
       foo: {required: true},
       baz: {required: true},
       bin: {}
     };
 
-    books.allAccountedFor({
-      foo: 'bar', 
-      bin: 'baz'
-    }).should.eql(false);
+    books.on('allAccountedFor', function(msg) {
+      if (!counter) {
+        msg.should.eql(false);
+        return counter++;
+      }
+      msg.should.eql(true);
+    });
 
     books.allAccountedFor({
-      foo: 'bar', 
-      baz: 123, 
+      foo: 'bar',
       bin: 'baz'
-    }).should.eql(true);
+    });
+
+    books.allAccountedFor({
+      foo: 'bar',
+      baz: 123,
+      bin: 'baz'
+    });
   });
 });
