@@ -22,33 +22,40 @@ beforeEach(function() {
 
 describe('.update()', function () {
   it('should catch errors', function () {
-    books._store = {1: {tuna: true}};
+    books._store = [{tuna: true}];
 
-    books.update.bind(books, {hello: 'you'})
-      .should.throw('Provide an object with a cid as an argument');
-    books.update.bind(books, {cid: 0})
-      .should.throw('The cid \'0\' could not be found');
+    books.update.bind(books, 'hello')
+      .should.throw('Record should be an object');
+    books.update.bind(books, {})
+      .should.not.throw('Record should be an object');
   });
 
   it('should update records', function () {
-    books._store = {
-      1: {cid: 1, tuna: true},
-      8: {cid: 8, ham: 'bacon'}
-    };
+    var tuna = {tuna: true};
+    books._store = [
+      tuna,
+      {ham: 'bacon'}
+    ];
 
-    books.update({cid: 1, tuna: false});
-    books._store.should.eql({
-      1: {cid: 1, tuna: false},
-      8: {cid: 8, ham: 'bacon'}
-    })
+    books.update({tuna: false}, tuna);
+    books._store.should.eql([
+      {tuna: false},
+      {ham: 'bacon'}
+    ]);
   });
 
   it('should call the adapters');
 
   it('should emit a \'change\' event', function (done) {
-    books.on('change', function() {done()});
-    books._store = {1: {tuna: true}};
+    var tuna = {tuna: true};
+    var falseTuna = {tuna: false};
 
-    books.update({cid: 1, tuna: false});
+    books.on('change', function() {
+      if (books._store[0] == falseTuna) done();
+    });
+
+    books._store = [tuna];
+
+    books.update(falseTuna, tuna);
   });
 });
