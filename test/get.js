@@ -21,17 +21,9 @@ beforeEach(function() {
  */
 
 describe('.get()', function () {
-  it('should catch errors', function () {
-    books._store = {1: {tuna: true}};
-
-    books.get.bind(books, 'something').should.throw('Provide a number as an argument');
-    books.get.bind(books, undefined).should.throw('Provide a number as an argument');
-    books.get.bind(books, null).should.throw('Provide a number as an argument');
-    books.get.bind(books, 0).should.throw('Could not find object with cid: 0');
-  });
 
   it('should return a record from the store', function () {
-    books._store = {1: {tuna: true}};
-    books.get(1).should.eql({tuna: true});
+    books._store = [{tuna: true}];
+    books.get().should.eql([{tuna: true}]);
   });
 });
