@@ -43,19 +43,7 @@ describe('.update()', function () {
     })
   });
 
-  it('should save transactions', function() {
-    books._store = {
-      1: {cid: 1, tuna: true}
-    }
-    books.update({cid: 1, tuna: false});
-    books._transactions.should.eql([{
-      action: 'update',
-      data: {
-        cid: 1,
-        tuna: false
-      }
-    }]);
-  });
+  it('should call the adapters');
 
   it('should emit a \'change\' event', function (done) {
     books.on('change', function() {done()});
