@@ -22,43 +22,31 @@ beforeEach(function() {
 
 describe('.remove()', function () {
   it('should catch errors', function () {
-    books._store = {1: {tuna: true}};
+    books._store = [{tuna: true}];
 
-    books.remove.bind(books, 'hello').should.throw('Provide a cid as an argument');
-    books.remove.bind(books, 2).should.throw('The cid \'2\' could not be found');
+    books.remove.bind(books, 'hello')
+      .should.throw('Record should be an object');
+    books.remove.bind(books, {})
+      .should.not.throw('Record should be an object');
   });
 
   it('should remove a record', function () {
-    books._store = {
-      1: {tuna: true},
-      2: {name: 'Tobi'}
-    };
+    books._store = [
+      {tuna: true},
+      {name: 'Tobi'}
+    ];
 
-    books.remove(2);
-    books._store.should.eql({1: {tuna: true}});
+    books.remove(books._store[1]);
+    books._store.should.eql([{tuna: true}]);
   });
 
-  it('should save transactions', function() {
-    books._store = {
-      1: {cid: 1, tuna: true}
-    };
-    books.remove(1);
-    books._transactions.should.eql([{
-      action: 'remove',
-      data: {
-        cid: 1,
-        tuna: true
-      }
-    }]);
-  });
-
-  it('should emit a \'change\' event', function (done) {
-    books._store = {
-      1: {tuna: true},
-      2: {name: 'Tobi'}
-    };
+  it('should emit a \'change\' event', function(done) {
+    books._store = [
+      {tuna: true},
+      {name: 'Tobi'}
+    ];
     books.on('change', function() {done()});
 
-    books.remove(2);
+    books.remove(books._store[0]);
   });
 });
