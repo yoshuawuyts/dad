@@ -20,12 +20,12 @@ beforeEach(function() {
  * Test
  */
 
-describe('._push()', function () {
+describe('._sync()', function () {
   it('should catch errors', function() {
-    books._push.bind(books, 123)
+    books._sync.bind(books, 123)
       .should.throw('Method should be a string');
 
-    books._push.bind(books, 'hello')
+    books._sync.bind(books, 'hello')
       .should.throw('Data should not be undefined');
   });
 
@@ -38,7 +38,7 @@ describe('._push()', function () {
       }
     }];
 
-    books._push('create', {cat: 'fish'});
+    books._sync('create', {cat: 'fish'});
   });
 
   it('should chain call multiple adapters', function(done) {
@@ -54,6 +54,6 @@ describe('._push()', function () {
       }
     }];
 
-    books._push('create', {cat: 'fish'});
+    books._sync('create', {cat: 'fish'});
   });
 });

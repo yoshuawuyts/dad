@@ -36,7 +36,7 @@ books.update({cid: 0, title: 'Lizards', author: 'Tobi', pages: 12});
 #### Events
 |__change__ |__sync__  |
 |-----------|----------|
-|`.add()`   |`._push()` |
+|`.add()`   |`._sync()` |
 |`.get()`   |`.fetch()`|
 |`.update()`|          |
 
@@ -123,13 +123,13 @@ chapters.remove(2);
 ````
 
 ### Persistance
-#### ._push([config])
+#### ._sync([config])
 Persist the record changes to the backend. Can be provided with optional HTTP
 headers. Emits a push event when completed, else it emits an error event.
 ````js
-books._push();
+books._sync();
 
-books._push({
+books._sync({
   API_KEY: 'mysecretkey',
   ANOTHER_HEADER: 'some value'
 });
