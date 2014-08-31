@@ -15,81 +15,100 @@ synchronize your data with any backend. Official adapters are a WIP.
 $ npm i --save dad
 ````
 
+## References
+- [Issues](https://github.com/yoshuawuyts/dad/issues)
+- [Pull Requests](https://github.com/yoshuawuyts/dad/pulls)
+- [Wiki](https://github.com/yoshuawuyts/dad/wiki)
+
 ## Overview
 ````js
-var store = require('dad');
-var books = store('books');
+var rest = require('dad-rest');
+var dad = require('dad');
+var store = dad('books');
 
-// attributes
-books
-  .settings({baseUrl: 'api.mysite.com/books'})
-  .schema({
-    title: {type: 'string', required: true},
-    author: {type: 'string', required: true},
-    pages: {type: 'number'}
-  });
+// Set the schema.
+store.schema = {
+  title: {type: 'string', required: true},
+  author: {type: 'string', required: true},
+  pages: {type: 'number'}
+};
 
-// transactions
-books.add({title: 'Ferrets', author: 'Tobi', pages: 12});
-books.update({cid: 0, title: 'Lizards', author: 'Tobi', pages: 12});
+// Set the adapters.
+
+store.adapters = [
+  rest('localhost:1337/books')
+];
+
+// Start moving data around, and save it to
+// our REST backend.
+store.add({
+  title: 'Ferrets',
+  author: 'Tobi',
+  pages: 12
+});
+
+store.update({
+  title: 'Lizards',
+  author: 'Tobi',
+  pages: 12
+});
 ````
-#### Events
-|__change__ |__sync__  |
-|-----------|----------|
-|`.add()`   |`._sync()` |
-|`.get()`   |`.fetch()`|
-|`.update()`|          |
 
 ## API
 #### dad(name)
 Create a named store.
 ````js
-var store = require('dad');
-var books = store('books');
-var chapters = store('chapters');
+var dad = require('dad');
+var store = dad('books');
 ````
 
-#### .schema(schema)
+#### .schema = schema
 Define the schema for the store.
 ````js
-books
-  .schema({
-    title: {type: 'string', required: true},
-    author: {type: 'string', required: true},
-    pages: {type: 'number'}
-  });
+store.schema = {
+  title: {type: 'string', required: true},
+  author: {type: 'string', required: true},
+  pages: {type: 'number'}
+};
 ````
 
-#### .settings(opts)
-Define settings to be used. Settings can be used to store synchronization
-url's and auth tokens.
-````js
-books.settings({baseUrl: 'api.mysite.com/books'});
-````
+#### .adapters = adapters
+Define the adapters to be called.
+```js
+var localStorage = require('dad-localStorage');
+var rest = require('dad-rest');
 
+store.adapters = [
+  localStorage,
+  rest
+];
+```
+
+### Validation
 #### .validate(key, value)
 Validate a value against a key in the schema.
 ```js
-books.validate('name', 'Tobi');
+store.validate({
+  title: 'bar',
+  author: 'bin'
+});
 ```
 
 #### .allAccountedFor(record)
 Check if an object accounts for all properties demanded by the schema.
 ```js
-books.allAccountedFor({foo: 'bar', baz: 'bin'});
+store.allAccountedFor({
+  title: 'bar',
+  author: 'bin'
+});
 ```
 
 ### Transactions
 #### .add(record)
-Save a record or an array of records to the store.
+Save a record or an array of records to the store. Also calls all
+registered adapters. Emits a `change` event when done.
 ````js
-chapters.add([
-  {name: 'chapter 1', pages: 2},
-  {name: 'chapter 2', pages: 6},
-  {name: 'chapter 3', pages: 4}
-]);
-
-books.add({
+store.add({
   title: 'Fatherly jokes',
   author: 'Tobi',
   pages: 12,
@@ -97,59 +116,44 @@ books.add({
 });
 ````
 
-#### .get(cid)
-Get a record from the store at cid.
+#### .get()
+Get all records from the store. Also calls all registered adapters.
 ````js
-var fatherlyJokes = books.get(0);
+store.get();
 ````
 
 #### .update(record)
-Update a record with a cid. Emits an update event when completed. If the record has no cid provided, an error
-will be thrown.
+Update a record. Also calls all registered adapters.
+Emits a `change` event when done.
 ````js
-chapters.update({
-  cid: 4,
+store.update({
   title: 'Fatherly jokes',
   author: 'Tobi',
-  pages: 12,
-  chapters: [0]
+  pages: 12
 });
 ````
 
-#### .remove(cid)
-Remove a record from the store at cid.
+#### .remove(record)
+Remove a record from the store. Also calls all registered adapters.
+Emits a `change` event when done.
 ````js
-chapters.remove(2);
+store.remove({
+  title: 'Fatherly jokes',
+  author: 'Tobi',
+  pages: 12
+});
 ````
 
 ### Persistance
-#### ._sync([config])
-Persist the record changes to the backend. Can be provided with optional HTTP
-headers. Emits a push event when completed, else it emits an error event.
-````js
-books._sync();
-
-books._sync({
-  API_KEY: 'mysecretkey',
-  ANOTHER_HEADER: 'some value'
-});
-````
-
-#### .fetch([configuration]) [wip]
+#### .fetch([config])
 Fetch records from the server over HTTP. Can be provided with optional HTTP
-headers. Emits a fetch event when completed, else it emits an error event.
+headers. Emits a `sync` event when completed, else it emits an `error` event.
 ````js
-books.fetch();
-
-books.fetch({
+store.fetch({
   API_KEY: 'mysecretkey',
   ANOTHER_HEADER: 'some value'
 });
 ````
-
-## References
-- [Issues](https://github.com/yoshuawuyts/dad/issues)
-- [Pull Requests](https://github.com/yoshuawuyts/dad/pulls)
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license) © [Yoshua Wuyts](yoshuawuyts.com)
