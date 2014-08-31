@@ -23,6 +23,6 @@ beforeEach(function() {
 describe('rest-adapter', function () {
   it('should do stuff', function() {
     books._adapters = [books.rest];
-    books.push();
+    books._push();
   });
 });

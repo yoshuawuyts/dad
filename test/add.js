@@ -24,13 +24,13 @@ beforeEach(function() {
 describe('.add()', function () {
   it('should catch errors', function() {
     books.add.bind(books, {'foo': 'bar'})
-      .should.not.throw('Store.add: argument should be an object, or an array of Objects');
+      .should.not.throw('Record should be an object or an array of objects');
 
     books.add.bind(books, [{'foo': 'bar'}, {'baz': 12}])
-      .should.not.throw('Store.add: argument should be an object, or an array of Objects');
+      .should.not.throw('Record should be an object or an array of objects');
 
     books.add.bind(books, 1234)
-      .should.throw('Store.add: argument should be an object, or an array of Objects');
+      .should.throw('Record should be an object or an array of objects');
   });
 
   it('should save data to the store', function() {
@@ -60,16 +60,7 @@ describe('.add()', function () {
     ]);
   });
 
-  it('should save transactions', function() {
-    books.add({foo: 'bar'});
-    books._transactions.should.eql([{
-      action: 'add',
-      data: {
-        cid: 0,
-        foo: 'bar'
-      }
-    }]);
-  });
+  it('should call the adapters');
 
   it('should emit a \'change\' event', function(done) {
     books.on('change', function() {done()});
